@@ -190,6 +190,10 @@ void TinyConsole::loop()
     {
       input.insert(cursor++, 1, c);
     }
+    else if (c<32 and callback_c0)
+    {
+      callback_c0(c);
+    }
 
 #if TINY_CONSOLE_DEBUG
     static int counter=0;

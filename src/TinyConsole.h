@@ -43,6 +43,7 @@ class TinyConsole
 
     using CallBack = void(*)(const string& command);
     using CallBackFnKey = void(*)(int fkey);
+    using CallBackContolKey = void(*)(char ckey);
 
     TinyConsole();
     void begin(long baud);  // Init with Serial
@@ -56,6 +57,7 @@ class TinyConsole
 
     void setCallback(CallBack cb) { callback = cb; }
     void setCallbackFnKey(CallBackFnKey cb) { callback_fn = cb; }
+    void setCallbackC0Key(CallBackContolKey cb) { callback_c0 = cb; }
 
     const TinyConsole& gotoxy(unsigned char x, unsigned char y) const;
     const TinyConsole& cursorVisible(bool visible) const;
@@ -116,6 +118,7 @@ class TinyConsole
     string::size_type cursor=0; // column
     CallBack callback = nullptr;
     CallBackFnKey callback_fn = nullptr;
+    CallBackContolKey callback_c0 = nullptr;
     Stream* serial = nullptr;
     bool term = false;
     bool csi6n = false;
